@@ -1,0 +1,14 @@
+[
+  {
+    "id": "fall-2026",
+    "title": "Fall 2026",
+    "theme": "Strategic: To be forewarned is to be forearmed",
+    "file": "fall-2026.json"
+  },
+  {
+    "id": "spring-2026",
+    "title": "Spring 2026",
+    "theme": "Proverbs: The Path of Wisdom",
+    "file": "spring-2026.json"
+  }
+]

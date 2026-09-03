@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Men's Study Group Hub</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="A premium study companion for tracking seasonal church studies, reflecting on scripture, and preparing outlines and discussion questions.">
+  <meta name="theme-color" content="#0f172a" id="meta-theme-color">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Anti-Flash of Unstyled Content (FOUC) Theme Script -->
+  <meta name="color-scheme" content="light dark">
+  <script>
+    {
+      const colorScheme = localStorage.getItem("color-scheme");
+      if (colorScheme) {
+        document.querySelector('meta[name="color-scheme"]').content = colorScheme;
+        document.documentElement.setAttribute('data-theme', colorScheme);
+      } else {
+        // Default to light scheme
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    }
+  </script>
+  
+  <!-- Stylesheet Link -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <!-- SVG Icon Library (Sprite sheet for clean markup) -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+    </symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+    </symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path>
+    </symbol>
+    <symbol id="icon-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle>
+    </symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path><path d="M6 6h10M6 10h10M6 14h10"></path>
+    </symbol>
+    <symbol id="icon-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m22 8-6 4 6 6V8Z"></path><rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect>
+    </symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </symbol>
+    <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M12 5v14"></path>
+    </symbol>
+    <symbol id="icon-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+    </symbol>
+    <symbol id="icon-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 6h18M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+    </symbol>
+    <symbol id="icon-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"></path>
+    </symbol>
+    <symbol id="icon-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"></path>
+    </symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4M12 8h.01"></path>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+    </symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
+    </symbol>
+    <symbol id="icon-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 11 8 11 8a18.5 18.5 0 0 1-2.18 3.57M3 3l18 18M9.17 9.17A10.15 10.4 0 0 0 1 12c0 0 4 8 11 8a10.43 10.43 0 0 0 4.17-.83"></path>
+    </symbol>
+  </svg>
+
+  <!-- Main Grid Container -->
+  <div class="app-layout">
+    
+    <!-- Top Global Header -->
+    <header class="app-header">
+      <div class="header-brand">
+        <svg class="brand-logo"><use href="#icon-shield"></use></svg>
+        <div class="brand-text">
+          <h1>MEN'S STUDY HUB</h1>
+          <span class="sub-logo">CHURCH FELLOWSHIP STUDY SERIES</span>
+        </div>
+      </div>
+      
+      <!-- Real-time Stats Widget -->
+      <div class="header-stats" id="header-progress-widget">
+        <div class="stats-label">
+          <span id="stats-season-name">Fall 2026</span>
+          <span id="stats-progress-pct">0% Complete</span>
+        </div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="stats-progress-bar" style="width: 0%;"></div>
+        </div>
+      </div>
+      
+      <!-- Global Controls -->
+      <div class="header-controls">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle Theme" title="Toggle Light/Dark Mode">
+          <svg class="icon-sun"><use href="#icon-sun"></use></svg>
+          <svg class="icon-moon" style="display: none;"><use href="#icon-moon"></use></svg>
+        </button>
+      </div>
+    </header>
+
+
+
+    <!-- Content Workspace -->
+    <main class="app-workspace">
+      
+      <!-- Left Column: Sticky Sidebar -->
+      <aside class="sidebar-panel">
+        
+        <!-- Season Tab List -->
+        <section class="sidebar-section">
+          <h2 class="section-title">Study Seasons</h2>
+          <div class="season-tabs" id="season-tab-list" role="tablist" aria-label="Study Seasons">
+            <!-- Dynamically populated tab items -->
+          </div>
+        </section>
+
+        <!-- Current Season Info -->
+        <section class="sidebar-section season-metadata-card">
+          <h2 class="section-title">Current Study</h2>
+          <div id="active-season-info">
+            <h3 class="season-card-title" id="active-season-title">Fall 2026</h3>
+            <p class="season-card-theme" id="active-season-theme">Steadfast: Stand Firm</p>
+            <p class="season-card-desc" id="active-season-desc">Loading study overview...</p>
+          </div>
+        </section>
+
+        <!-- Reflection Actions Card -->
+        <section class="sidebar-section quick-actions-card">
+          <h2 class="section-title">Your Study Notebook</h2>
+          <p class="section-hint">Personal reflections are saved locally in real-time.</p>
+          <div class="actions-vertical-list">
+            <button id="btn-export-reflections" class="btn-secondary">
+              <svg class="btn-icon-svg"><use href="#icon-export"></use></svg>
+              <span>Export Personal Notes</span>
+            </button>
+            <button id="btn-clear-reflections" class="btn-secondary btn-destructive-hover">
+              <svg class="btn-icon-svg"><use href="#icon-trash"></use></svg>
+              <span>Clear Saved Notes</span>
+            </button>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Right Column: Timeline Content -->
+      <section class="timeline-container">
+        
+        <!-- Header Banner showing results count or timeline focus -->
+        <div class="timeline-header">
+          <div class="timeline-header-text">
+            <h2 id="timeline-focus-title">Study Outline</h2>
+            <p id="timeline-focus-subtitle">8-Week Study Course Timeline</p>
+          </div>
+        </div>
+
+        <!-- Scrollable Timeline Items -->
+        <div class="timeline-flow" id="study-weeks-timeline">
+          <!-- Dynamically populated weeks accordions -->
+        </div>
+
+
+      </section>
+    </main>
+  </div>
+
+  <!-- System Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

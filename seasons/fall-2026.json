@@ -7,172 +7,116 @@
   "weeks": [
     {
       "number": 1,
-      "title": "Samson – Playing with Fire",
+      "title": "Playing with Fire – Samson & Joseph",
       "scripture": {
-        "reference": "2 Corinthians 2:11",
-        "text": "...lest Satan should take advantage of us; for we are not ignorant of his devices."
+        "reference": "Romans 15:4 (Judges 16:4–20 & Genesis 39:1–16)",
+        "text": "For whatsoever things were written in times past, were written for our learning, that we through patience and comfort of the Scriptures might have hope."
       },
       "outline": [
-        "The anatomy of compromise: Samson's gradual drift from his Nazirite vows (Judges 13–16)",
-        "Playing near the edge: Why flirting with boundary lines always ends in captivity",
-        "Living in the light: The requirement of being above reproach in private and public",
-        "Contrasting responses to temptation: Joseph running from Potiphar's wife, Daniel resolving in his heart not to defile himself"
+        "Examining the danger of not taking temptation seriously and the benefits of walking in the light.",
+        "Equipped to teach (families), to lead (other men), and to guide (counsel).",
+        "Both men raised in spiritual homes – are we living up to God's calling?",
+        "Sin is deceitful (Hebrews 3:12–13); all sin has a history (James 1:13–15).",
+        "Samson's troubles are self-inflicted: he couldn't master himself.",
+        "Samson flirts with trouble: he didn't tell her the truth because he knew she was trouble.",
+        "Samson refuses to take the way of escape (Judges 16:12; 1 Corinthians 10:12–13).",
+        "Conclusion: Saved soul / wasted life.",
+        "Keys to Joseph's Success – Stewardship: Someone who will give an account to another.",
+        "Keys to Joseph's Success – God's Total Authority: He is Lord, not just Savior. Temptation is always a battle for authority.",
+        "Keys to Joseph's Success – Conviction Established Early: What is right and wrong was decided before the temptation. Are we men under authority or will we make our own rules?",
+        "Keys to Joseph's Success – Integrity: What he believed, what he said, and what he did were consistent.",
+        "Keys to Joseph's Success – Healthy Fear of Himself: A time to run away (Matthew 5:27–32).",
+        "Keys to Joseph's Success – Healthy Fear of God: Recognizing 'great wickedness and sin against God' (Genesis 39:9) – not trying to justify or find a loophole."
       ],
       "questions": [
-        "Samson thought he could handle the heat without getting burned. In what areas are you tempted to test how close you can get to a boundary?",
-        "What does it look like practically to 'flee' temptation like Joseph rather than 'manage' it like Samson?"
+        "What stuck out to you from the two stories?",
+        "Where do you turn when living the Christian life and resisting the world becomes difficult?",
+        "What examples have you seen in your life of men who were like Samson or like Joseph – how did it impact you?"
       ],
-      "resources": [
-        { "name": "Sermon: Fleeing vs Flirting with Temptation", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" },
-        { "name": "Reading: Joseph, Daniel, and Samson Contrasted", "url": "https://example.com/samson-contrast" }
-      ]
+      "resources": []
     },
     {
       "number": 2,
       "title": "David – Disciplined",
-      "scripture": {
-        "reference": "1 Corinthians 9:27",
-        "text": "No, I strike a blow to my body and make it my slave so that after I have preached to others, I myself will not be disqualified for the prize."
+      "prereading": {
+        "title": "Chapter 2: Discipline",
+        "subtitle": "Core Question: How is man different from animal? | Core Virtue: Discipline",
+        "markdownFile": "readings/chapter-2-discipline.md",
+        "pdfFile": "assets/Authentic Masculinity CHAPTER 2 DISCIPLINE.pdf"
       },
-      "outline": [
-        "The season of war: David staying behind in Jerusalem when kings go out to battle (2 Samuel 11)",
-        "The danger of idleness: How comfort, success, and passive relaxation create fertile ground for the enemy's schemes",
-        "The escalation of a look: From passive observation to active transgression, cover-up, and murder",
-        "Cultivating spiritual and physical discipline: 'Beating' our desires to make them servants, not masters"
-      ],
-      "questions": [
-        "David's idle evening led to a lifetime of regret. Where in your schedule or life are you currently most vulnerable to the passive traps of comfort and idleness?",
-        "What is one spiritual discipline or physical habit you need to implement to 'strike a blow to your body' and keep it in subjection?"
-      ],
-      "resources": [
-        { "name": "Video: David and Bathsheba's Collapse (BibleProject)", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
-      ]
+      "scripture": {
+        "reference": "",
+        "text": ""
+      },
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 3,
       "title": "Ahithophel – Bitterness",
       "scripture": {
-        "reference": "Psalm 41:9",
-        "text": "Even my close friend, someone I trusted, one who shared my bread, has turned against me."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "Ahithophel the counselor: Renowned for wisdom like the very word of God (2 Samuel 15, 16, 17)",
-        "The hidden root of bitterness: Ahithophel's relationship to Bathsheba (grandfather) and resentment toward David's sin",
-        "How unforgiveness poisons wisdom: Trading a lifetime of loyalty for a moment of personal vengeance",
-        "The tragic end of bitterness: The self-destructive nature of holding a grudge"
-      ],
-      "questions": [
-        "Ahithophel's grievance against David was legitimate, but his bitter reaction destroyed him. How do we distinguish between seeking justice and harboring self-destructive bitterness?",
-        "Are you currently carrying resentment or bitterness toward an 'old familiar friend' or leader? What step is needed to release it?"
-      ],
-      "resources": [
-        { "name": "Reading: Bitter Roots & Poisoned Counselors", "url": "https://example.com/ahithophel-bitterness" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 4,
       "title": "Esau – Profane",
       "scripture": {
-        "reference": "Hebrews 12:16",
-        "text": "See that no one is sexually immoral, or is godless like Esau, who for a single meal sold his inheritance rights as the oldest son."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "The immediate vs. the eternal: Exchanging an enduring covenant inheritance for a temporary bowl of red stew (Gen 25, Heb 12)",
-        "The meaning of a 'profane' or godless heart: Despising spiritual treasures because they cannot be touched or eaten right now",
-        "The sovereign prophecy: The struggle between Jacob and Esau, and the older serving the younger",
-        "Seeking repentance with tears: Why some consequences cannot be undone even when emotional sorrow is high"
-      ],
-      "questions": [
-        "Esau sold his birthright in a moment of intense hunger. What are the modern 'bowls of stew' (temporary pleasures, financial gain, career validation) that tempt you to barter your spiritual inheritance?",
-        "How does keeping an eternal perspective protect us from making short-sighted, profane deals with our character?"
-      ],
-      "resources": [
-        { "name": "Sermon: The Cost of a Bowl of Stew", "url": "https://example.com/esau-stew" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 5,
       "title": "Judas – Covetous",
       "scripture": {
-        "reference": "John 12:5-6",
-        "text": "'Why wasn't this perfume sold and the money given to the poor? It was worth a year's wages.' He did not say this because he cared about the poor but because he was a thief..."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "The seed of greed: Judas as the keeper of the disciples' money bag, stealing small amounts over time",
-        "The clash of values: Mary's extravagant, wasteful worship with the alabaster box vs. Judas's pragmatic, covetous calculation",
-        "The final bargain: Selling out the Son of God for thirty pieces of silver (the price of a common slave)",
-        "The trap of covetousness: How loving money blindfolds us to the presence and worth of Jesus"
-      ],
-      "questions": [
-        "Judas masked his greed with 'concern for the poor.' How do we sometimes disguise our own covetousness, greed, or materialism in spiritual or practical language?",
-        "Mary broke her alabaster box in total devotion. What is your 'alabaster box' that you are reluctant to break open for Christ?"
-      ],
-      "resources": [
-        { "name": "Podcast: Judas, Mary, and the Alabaster Box", "url": "https://example.com/judas-mary" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 6,
       "title": "Demas – Loved Present World",
       "scripture": {
-        "reference": "2 Timothy 4:10",
-        "text": "...for Demas, because he loved this world, has deserted me and has gone to Thessalonica."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "Demas the co-worker: Mentioned as a trusted missionary teammate of Paul along with Luke (Col 4, Phlm 24)",
-        "The quiet decay of affection: Demas did not fall to heresy, but to the slow, magnetic pull of 'the present world'",
-        "The pain of abandonment: What it feels like to be deserted by a brother in the middle of a hard battle",
-        "Guarding against worldliness: Resisting the pressure to seek security, comfort, and luxury in Thessalonica"
-      ],
-      "questions": [
-        "Demas started strong but drifted away because he loved this world. What worldly comforts or securities are currently calling to you, inviting you to desert your spiritual post?",
-        "How can we keep our love for Christ warmer than the magnetic pull of present worldly achievements and comfort?"
-      ],
-      "resources": [
-        { "name": "Reading: The Quiet Drift of Demas", "url": "https://example.com/demas-drift" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 7,
       "title": "Solomon – Failure to Live by What You Know",
       "scripture": {
-        "reference": "Proverbs 4:20-21",
-        "text": "My son, pay attention to what I say; turn your ear to my words. Do not let them out of your sight, keep them within your heart."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "The legacy of wisdom: Gifted with unmatched understanding, written down in thousands of proverbs",
-        "The gap between intellect and obedience: Advising 'my son' on purity, work, and idolatry, while practicing the opposite",
-        "The slow slide: How a godly father (David) and deep theology cannot save a man who refuses to live what he knows",
-        "Aligning knowledge with action: Reclaiming integrity by matching intellectual conviction with daily submission"
-      ],
-      "questions": [
-        "Solomon was the wisest man alive, yet he built altars to foreign gods. In what area of your life does your actual behavior contradict your deepest biblical knowledge?",
-        "How do we guard against the danger of studying wisdom in a small group like this, without actually submitting our private schedules and decisions to it?"
-      ],
-      "resources": [
-        { "name": "Video: Solomon's Tragic Double Life", "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     },
     {
       "number": 8,
       "title": "Peter – Peer Pressure",
       "scripture": {
-        "reference": "Galatians 2:11-12",
-        "text": "When Cephas came to Antioch, I opposed him to his face, because he stood condemned. For before certain men came from James, he used to eat with the Gentiles. But when they arrived, he began to draw back and separate himself..."
+        "reference": "",
+        "text": ""
       },
-      "outline": [
-        "The vision of Acts 10: Peter declaring that God does not show favoritism and that Gentiles are clean",
-        "Antioch's compromise: Peter eating freely with Gentiles until the circumcision group arrives (Galatians 2)",
-        "The infection of hypocrisy: How even Barnabas was led astray by Peter's fear of social exclusion",
-        "Standing firm under pressure: The courage of Paul to confront a leader publicly to protect the truth of the Gospel"
-      ],
-      "questions": [
-        "Peter gave in to peer pressure out of fear of what others would think. In what circles (at work, among old friends, in your neighborhood) do you find yourself compromising or hiding your convictions?",
-        "Hypocrisy is contagious. How does our courage or compromise as men influence other brothers (like Peter's actions influenced Barnabas)?"
-      ],
-      "resources": [
-        { "name": "Sermon: Face to Face Confrontation in Antioch", "url": "https://example.com/peter-paul-confrontation" }
-      ]
+      "outline": [],
+      "questions": [],
+      "resources": []
     }
   ]
 }

@@ -130,7 +130,7 @@
         try {
           studyData = JSON.parse(savedData);
           // Auto cache-invalidation clear
-          const needsReset = studyData.some(s => !s.startDate);
+          const needsReset = studyData.some(s => !s.startDate || (s.id === 'fall-2026' && s.weeks && s.weeks[1] && s.weeks[1].prereading && s.weeks[1].prereading.text));
           if (needsReset) {
             studyData = window.INITIAL_STUDY_DATA || [];
             saveStudyDataToStorage();
@@ -240,6 +240,51 @@
         `;
       }).join('');
 
+      const prereadingHtml = week.prereading ? `
+        <div class="prereading-container" id="prereading-week-${week.number}">
+          <div class="prereading-banner">
+            <div class="prereading-banner-left">
+              <div class="prereading-badge">
+                <svg class="btn-icon-svg" style="width:14px;height:14px;"><use href="#icon-book"></use></svg>
+                <span>Required Pre-Reading</span>
+              </div>
+              <h4 class="prereading-title">${escapeHtml(week.prereading.title || 'Chapter Reading')}</h4>
+              ${week.prereading.subtitle ? `<div class="prereading-subtitle-text">${escapeHtml(week.prereading.subtitle)}</div>` : ''}
+            </div>
+            <div class="prereading-banner-actions">
+              ${week.prereading.markdownFile ? `
+                <button type="button" class="btn-primary btn-read-markdown" 
+                  data-week="${week.number}" 
+                  data-file="${escapeHtml(week.prereading.markdownFile)}"
+                  data-pdf="${escapeHtml(week.prereading.pdfFile || '')}"
+                  data-title="${escapeHtml(week.prereading.title || 'Chapter Reading')}">
+                  <svg class="btn-icon-svg"><use href="#icon-book"></use></svg>
+                  <span class="read-btn-text">Read Chapter</span>
+                </button>
+              ` : ''}
+              ${week.prereading.pdfFile ? `
+                <a href="${escapeHtml(week.prereading.pdfFile)}" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;padding:0.55rem 1rem;font-size:0.85rem;font-weight:600;border-radius:var(--radius-sm);border:1px solid var(--border-medium);background:var(--bg-card);color:var(--text-main);">
+                  <svg class="btn-icon-svg"><use href="#icon-chevron-right" style="transform:rotate(-90deg);"></use></svg>
+                  <span>View PDF</span>
+                </a>
+              ` : ''}
+            </div>
+          </div>
+          <div class="prereading-reader-panel" id="reader-panel-${week.number}" style="display: none;">
+            <div class="reader-toolbar">
+              <div class="reader-toolbar-label">
+                <svg class="btn-icon-svg"><use href="#icon-book"></use></svg>
+                <span>${escapeHtml(week.prereading.title || 'Chapter Reading')}</span>
+              </div>
+              <button type="button" class="btn-close-reader" data-week="${week.number}">
+                ✕ Close Reader
+              </button>
+            </div>
+            <div class="reader-body markdown-rendered" id="reader-body-${week.number}"></div>
+          </div>
+        </div>
+      ` : '';
+
       card.innerHTML = `
         <summary class="week-summary">
           <div class="week-badge">${week.number}</div>
@@ -255,38 +300,52 @@
         </summary>
         
         <div class="week-details-body">
+          ${prereadingHtml}
+          ${(week.scripture && (week.scripture.text || week.scripture.reference)) ? `
           <div class="scripture-highlight-card">
-            <p class="scripture-text">"${escapeHtml(week.scripture.text)}"</p>
+            ${week.scripture.text ? `<p class="scripture-text">"${escapeHtml(week.scripture.text)}"</p>` : ''}
+            ${week.scripture.reference ? `
             <div class="scripture-citation">
               <svg class="btn-icon-svg"><use href="#icon-book"></use></svg>
               <span>${escapeHtml(week.scripture.reference)}</span>
-            </div>
-            <button class="btn-copy-scripture" title="Copy Scripture Reference" data-text="${escapeHtml(week.scripture.reference + ' - ' + week.scripture.text)}">
+            </div>` : ''}
+            <button class="btn-copy-scripture" title="Copy Scripture Reference" data-text="${escapeHtml([week.scripture.reference, week.scripture.text].filter(Boolean).join(' - '))}">
               <svg class="btn-icon-svg"><use href="#icon-copy"></use></svg>
             </button>
           </div>
+          ` : ''}
 
+          ${((week.outline && week.outline.length > 0) || (week.questions && week.questions.length > 0)) ? `
           <div class="discussion-grid">
+            ${(week.outline && week.outline.length > 0) ? `
             <div class="outline-box">
               <h4 class="box-title">
                 <svg><use href="#icon-book"></use></svg>
                 <span>Discussion Outline</span>
               </h4>
               <ul class="outline-list">
-                ${outlineHtml || '<li class="outline-item text-dim">No outline points provided.</li>'}
+                ${outlineHtml}
               </ul>
-            </div>
+            </div>` : ''}
 
+            ${(week.questions && week.questions.length > 0) ? `
             <div class="questions-box">
               <h4 class="box-title">
                 <svg><use href="#icon-shield"></use></svg>
                 <span>Discussion Questions</span>
               </h4>
               <div class="questions-list">
-                ${questionsHtml || '<p class="section-hint text-dim">No discussion questions provided.</p>'}
+                ${questionsHtml}
               </div>
-            </div>
+            </div>` : ''}
           </div>
+          ` : ''}
+
+          ${(!week.prereading && (!week.scripture || (!week.scripture.text && !week.scripture.reference)) && (!week.outline || week.outline.length === 0) && (!week.questions || week.questions.length === 0)) ? `
+          <div style="padding: 1.5rem; text-align: center; color: var(--text-dim); font-style: italic;">
+            Study material coming soon...
+          </div>
+          ` : ''}
 
           ${(week.resources && week.resources.length > 0) ? `
           <div class="resources-box" style="margin-top: 1.5rem;">
@@ -320,22 +379,96 @@
         </div>
       `;
 
-      // Copy Scripture Click listener
-      card.querySelector('.btn-copy-scripture').addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        const textToCopy = this.getAttribute('data-text');
-        navigator.clipboard.writeText(textToCopy).then(() => {
-          const btn = this;
-          const svg = btn.querySelector('use');
-          svg.setAttribute('href', '#icon-check');
-          btn.style.color = '#10b981';
-          setTimeout(() => {
-            svg.setAttribute('href', '#icon-copy');
-            btn.style.color = '';
-          }, 2000);
+      // Pre-reading reader toggle
+      const readBtn = card.querySelector('.btn-read-markdown');
+      const closeBtn = card.querySelector('.btn-close-reader');
+      const readerPanel = card.querySelector(`#reader-panel-${week.number}`);
+      const readerBody = card.querySelector(`#reader-body-${week.number}`);
+
+      if (readBtn && readerPanel && readerBody) {
+        readBtn.addEventListener('click', async function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          const isExpanded = readerPanel.style.display !== 'none';
+          if (isExpanded) {
+            readerPanel.style.display = 'none';
+            const btnText = readBtn.querySelector('.read-btn-text');
+            if (btnText) btnText.textContent = 'Read Chapter';
+          } else {
+            if (!readerBody.hasAttribute('data-loaded')) {
+              readerBody.innerHTML = '<p style="text-align:center;padding:2rem;color:var(--text-muted);">Loading reading material...</p>';
+              readerPanel.style.display = 'block';
+              const btnText = readBtn.querySelector('.read-btn-text');
+              if (btnText) btnText.textContent = 'Hide Chapter';
+
+              const filePath = readBtn.getAttribute('data-file');
+              const pdfPath = readBtn.getAttribute('data-pdf');
+              let mdContent = '';
+              try {
+                if (window.READINGS_CACHE && window.READINGS_CACHE[filePath]) {
+                  mdContent = window.READINGS_CACHE[filePath];
+                } else {
+                  const res = await fetch(filePath);
+                  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                  mdContent = await res.text();
+                }
+                readerBody.innerHTML = parseMarkdown(mdContent);
+                readerBody.setAttribute('data-loaded', 'true');
+              } catch (err) {
+                console.error("Failed to load reading markdown:", err);
+                if (window.READINGS_CACHE && window.READINGS_CACHE[filePath]) {
+                  readerBody.innerHTML = parseMarkdown(window.READINGS_CACHE[filePath]);
+                  readerBody.setAttribute('data-loaded', 'true');
+                } else {
+                  readerBody.innerHTML = `
+                    <div style="padding:1.5rem;text-align:center;color:var(--text-muted);">
+                      <p>Unable to load the formatted text in this view.</p>
+                      ${pdfPath ? `<p style="margin-top:0.5rem;"><a href="${escapeHtml(pdfPath)}" target="_blank" style="color:var(--accent-gold);text-decoration:underline;">Click here to open the PDF directly</a></p>` : ''}
+                    </div>
+                  `;
+                }
+              }
+            } else {
+              readerPanel.style.display = 'block';
+              const btnText = readBtn.querySelector('.read-btn-text');
+              if (btnText) btnText.textContent = 'Hide Chapter';
+            }
+          }
         });
-      });
+      }
+
+      if (closeBtn && readerPanel) {
+        closeBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          readerPanel.style.display = 'none';
+          if (readBtn) {
+            const btnText = readBtn.querySelector('.read-btn-text');
+            if (btnText) btnText.textContent = 'Read Chapter';
+          }
+        });
+      }
+
+      // Copy Scripture Click listener
+      const copyBtn = card.querySelector('.btn-copy-scripture');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const textToCopy = this.getAttribute('data-text');
+          navigator.clipboard.writeText(textToCopy).then(() => {
+            const btn = this;
+            const svg = btn.querySelector('use');
+            svg.setAttribute('href', '#icon-check');
+            btn.style.color = '#10b981';
+            setTimeout(() => {
+              svg.setAttribute('href', '#icon-copy');
+              btn.style.color = '';
+            }, 2000);
+          });
+        });
+      }
 
       // Reflection save handlers
       const textarea = card.querySelector('.reflection-text-area');
@@ -429,7 +562,9 @@
         journalText += `------------------------------------------------------------------------\n`;
         journalText += `Week ${week.number}: ${week.title}\n`;
         journalText += `Date: ${getWeekDate(season, week)}\n`;
-        journalText += `Scripture: ${week.scripture.reference} - "${week.scripture.text}"\n`;
+        if (week.scripture && (week.scripture.reference || week.scripture.text)) {
+          journalText += `Scripture: ${week.scripture.reference || ''}${week.scripture.text ? ` - "${week.scripture.text}"` : ''}\n`;
+        }
         journalText += `------------------------------------------------------------------------\n\n`;
         journalText += `[My Reflections & Notes]\n`;
         journalText += `${notes.trim()}\n\n\n`;
@@ -509,6 +644,125 @@
       }
     }
     return week.date || "";
+  }
+
+  // --- Markdown Parser for Pre-readings ---
+  function parseMarkdown(text) {
+    if (!text) return "";
+    const lines = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n");
+    const html = [];
+    let inTable = false;
+    let inList = false;
+    let inBlockquote = false;
+    let blockquoteBuffer = [];
+
+    function flushBlockquote() {
+      if (inBlockquote) {
+        html.push('<blockquote class="md-blockquote"><p>' + blockquoteBuffer.map(inlineFormat).join('<br>') + '</p></blockquote>');
+        blockquoteBuffer = [];
+        inBlockquote = false;
+      }
+    }
+
+    function flushList() {
+      if (inList) {
+        html.push('</ul>');
+        inList = false;
+      }
+    }
+
+    function flushTable() {
+      if (inTable) {
+        html.push('</tbody></table>');
+        inTable = false;
+      }
+    }
+
+    function inlineFormat(str) {
+      let s = escapeHtml(str);
+      s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/__(.+?)__/g, '<strong>$1</strong>');
+      s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      s = s.replace(/_(.+?)_/g, '<em>$1</em>');
+      return s;
+    }
+
+    for (let i = 0; i < lines.length; i++) {
+      const rawLine = lines[i];
+      const line = rawLine.trim();
+
+      if (line.startsWith('|') && line.endsWith('|')) {
+        flushBlockquote();
+        flushList();
+        if (/^\|[\s\-:|]+\|$/.test(line)) {
+          continue;
+        }
+        const cells = line.slice(1, -1).split('|').map(c => c.trim());
+        if (!inTable) {
+          inTable = true;
+          html.push('<table class="md-table"><thead><tr>');
+          cells.forEach(cell => {
+            html.push('<th>' + inlineFormat(cell) + '</th>');
+          });
+          html.push('</tr></thead><tbody>');
+        } else {
+          html.push('<tr>');
+          cells.forEach(cell => {
+            html.push('<td>' + inlineFormat(cell) + '</td>');
+          });
+          html.push('</tr>');
+        }
+        continue;
+      } else if (inTable) {
+        flushTable();
+      }
+
+      if (line.startsWith('>')) {
+        flushList();
+        inBlockquote = true;
+        blockquoteBuffer.push(line.replace(/^>\s*/, ''));
+        continue;
+      } else if (inBlockquote) {
+        flushBlockquote();
+      }
+
+      if (line.startsWith('- ') || line.startsWith('* ')) {
+        flushBlockquote();
+        if (!inList) {
+          inList = true;
+          html.push('<ul class="md-list">');
+        }
+        html.push('<li>' + inlineFormat(line.slice(2)) + '</li>');
+        continue;
+      } else if (inList) {
+        flushList();
+      }
+
+      if (line === '') {
+        continue;
+      }
+
+      if (line.startsWith('# ')) {
+        html.push('<h2 class="md-heading-1">' + inlineFormat(line.slice(2)) + '</h2>');
+        continue;
+      }
+      if (line.startsWith('## ')) {
+        html.push('<h3 class="md-heading-2">' + inlineFormat(line.slice(3)) + '</h3>');
+        continue;
+      }
+      if (line.startsWith('### ')) {
+        html.push('<h4 class="md-heading-3">' + inlineFormat(line.slice(4)) + '</h4>');
+        continue;
+      }
+
+      html.push('<p>' + inlineFormat(line) + '</p>');
+    }
+
+    flushBlockquote();
+    flushList();
+    flushTable();
+
+    return html.join('\n');
   }
 
   function escapeHtml(str) {

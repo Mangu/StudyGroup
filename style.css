@@ -994,6 +994,12 @@ body {
   padding-left: 1.5rem;
   font-size: 0.9rem;
   color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.outline-item strong {
+  color: var(--text-main);
+  font-weight: 600;
 }
 
 .outline-item::before {
@@ -1005,6 +1011,43 @@ body {
   height: 6px;
   background-color: var(--accent-gold);
   border-radius: var(--radius-full);
+}
+
+.outline-heading {
+  list-style: none;
+  margin-top: 1.25rem;
+  margin-bottom: 0.35rem;
+  padding-left: 0;
+  position: relative;
+}
+
+.outline-heading:first-child {
+  margin-top: 0;
+}
+
+.outline-heading::before {
+  display: none !important;
+}
+
+.outline-heading-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-gold);
+  padding: 0.4rem 0.75rem;
+  background: rgba(var(--accent-gold-rgb), 0.08);
+  border-left: 3px solid var(--accent-gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.outline-heading-title svg {
+  width: 14px;
+  height: 14px;
 }
 
 /* Discussion Question cards */

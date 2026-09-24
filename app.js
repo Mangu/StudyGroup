@@ -130,7 +130,11 @@
         try {
           studyData = JSON.parse(savedData);
           // Auto cache-invalidation clear
-          const needsReset = studyData.some(s => !s.startDate || (s.id === 'fall-2026' && s.weeks && s.weeks[1] && s.weeks[1].prereading && s.weeks[1].prereading.text));
+          const needsReset = studyData.some(s => 
+            !s.startDate || 
+            (s.id === 'fall-2026' && s.weeks && s.weeks[1] && s.weeks[1].prereading && s.weeks[1].prereading.text) ||
+            (s.id === 'fall-2026' && s.weeks && s.weeks[0] && s.weeks[0].outline && s.weeks[0].outline.some(item => typeof item === 'string' && item.startsWith("Keys to Joseph's Success –")))
+          );
           if (needsReset) {
             studyData = window.INITIAL_STUDY_DATA || [];
             saveStudyDataToStorage();
@@ -216,9 +220,44 @@
       card.className = "week-card";
       card.setAttribute('data-week-number', week.number);
       
-      const outlineHtml = (week.outline || []).map(pt => `
-        <li class="outline-item">${escapeHtml(pt)}</li>
-      `).join('');
+      const outlineHtml = (week.outline || []).map(pt => {
+        let isHeading = false;
+        let text = "";
+
+        if (typeof pt === 'object' && pt !== null && pt.heading) {
+          isHeading = true;
+          text = pt.heading;
+        } else if (typeof pt === 'string') {
+          const trimmed = pt.trim();
+          if (trimmed.startsWith('#')) {
+            isHeading = true;
+            text = trimmed.replace(/^#+\s*/, '');
+          } else if (/^[A-Z0-9\s'’–—\-:]{5,}$/.test(trimmed) && trimmed.length < 60) {
+            isHeading = true;
+            text = trimmed;
+          } else {
+            text = trimmed;
+          }
+        }
+
+        if (isHeading) {
+          return `
+            <li class="outline-heading">
+              <span class="outline-heading-title">
+                <svg class="btn-icon-svg"><use href="#icon-shield"></use></svg>
+                <span>${escapeHtml(text)}</span>
+              </span>
+            </li>
+          `;
+        }
+
+        let formattedText = escapeHtml(text);
+        if (formattedText.includes(':')) {
+          formattedText = formattedText.replace(/^([^:]+:)/, '<strong>$1</strong>');
+        }
+
+        return `<li class="outline-item">${formattedText}</li>`;
+      }).join('');
 
       const questionsHtml = (week.questions || []).map((q, qIdx) => `
         <div class="question-item">

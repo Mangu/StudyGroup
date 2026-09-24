@@ -128,8 +128,8 @@ body {
 
 /* --- Top Header styling --- */
 .app-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 2rem;
   padding: 1.25rem 2.5rem;
@@ -686,6 +686,7 @@ body {
   background-color: var(--bg-card);
   border: 1px solid var(--border-medium);
   border-radius: var(--radius-md);
+  margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   overflow: hidden;
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);

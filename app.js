@@ -25,12 +25,7 @@
   const elActiveSeasonTitle = document.getElementById('active-season-title');
   const elActiveSeasonTheme = document.getElementById('active-season-theme');
   const elActiveSeasonDesc = document.getElementById('active-season-desc');
-  const elHeaderProgressWidget = document.getElementById('header-progress-widget');
-  
-  const elStatsSeasonName = document.getElementById('stats-season-name');
-  const elStatsProgressPct = document.getElementById('stats-progress-pct');
-  const elStatsProgressBar = document.getElementById('stats-progress-bar');
-  
+
   const elWeeksTimeline = document.getElementById('study-weeks-timeline');
   const elTimelineFocusTitle = document.getElementById('timeline-focus-title');
   const elTimelineFocusSubtitle = document.getElementById('timeline-focus-subtitle');
@@ -166,7 +161,9 @@
     
     // Populate weeks
     renderWeeksTimeline(season.weeks);
-    updateGlobalProgress();
+    if (elTimelineFocusSubtitle && season.weeks) {
+      elTimelineFocusSubtitle.textContent = `${season.weeks.length}-Week Study Course Timeline`;
+    }
   }
 
   // Render Left Navigation List tabs
@@ -193,7 +190,6 @@
     elActiveSeasonTitle.textContent = season.title;
     elActiveSeasonTheme.textContent = season.theme || "Untitled Theme";
     elActiveSeasonDesc.textContent = season.description || "No overview provided.";
-    elStatsSeasonName.textContent = season.title;
   }
 
   // --- Timeline Builder ---
@@ -519,33 +515,6 @@
     });
   }
 
-  // --- Completion Progress ---
-  function updateGlobalProgress() {
-    const season = studyData.find(s => s.id === currentSeasonId);
-    if (!season || !season.weeks || season.weeks.length === 0) {
-      elHeaderProgressWidget.style.display = "none";
-      return;
-    }
-
-    elHeaderProgressWidget.style.display = "block";
-    let completedCount = 0;
-
-    season.weeks.forEach(week => {
-      const notesKey = `reflections-${currentSeasonId}-${week.number}`;
-      const savedNotes = localStorage.getItem(notesKey) || "";
-      if (savedNotes.trim().length > 0) {
-        completedCount++;
-      }
-    });
-
-    const totalWeeks = season.weeks.length;
-    const percentage = Math.round((completedCount / totalWeeks) * 100);
-
-    elStatsProgressPct.textContent = `${percentage}% Complete`;
-    elStatsProgressBar.style.width = `${percentage}%`;
-    elTimelineFocusSubtitle.textContent = `${totalWeeks}-Week Study Course Timeline (${completedCount}/${totalWeeks} Completed)`;
-  }
-
   // --- Notebook Autosave Logic ---
   function debouncedSaveNotes(weekNumber, text) {
     const saveIndicator = document.querySelector(`.save-indicator[data-week-number="${weekNumber}"]`);
@@ -569,8 +538,6 @@
     } else {
       localStorage.removeItem(notesKey);
     }
-
-    updateGlobalProgress();
 
     // Trigger visual saved feedback badge
     const saveIndicator = document.querySelector(`.save-indicator[data-week-number="${weekNumber}"]`);
@@ -652,7 +619,6 @@
         <p>Make sure seasons config JSON files are correctly placed in the '/seasons' folder.</p>
       </div>
     `;
-    elHeaderProgressWidget.style.display = "none";
   }
 
   // --- Global Event Listeners ---

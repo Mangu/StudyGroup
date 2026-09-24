@@ -552,7 +552,8 @@
     if (!season) return;
 
     let journalText = `========================================================================\n`;
-    journalText += `  MEN'S STUDY HUB - STUDY REFLECTIONS & NOTES JOURNAL\n`;
+    journalText += `  MEN'S DISCIPLESHIP - CALVARY CHAPEL OF PHILADELPHIA\n`;
+    journalText += `  Study Reflections & Notes Journal\n`;
     journalText += `  Study: ${season.title} - ${season.theme}\n`;
     journalText += `  Export Date: ${new Date().toLocaleDateString()}\n`;
     journalText += `========================================================================\n\n`;
